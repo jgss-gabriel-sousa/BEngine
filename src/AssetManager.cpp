@@ -172,7 +172,18 @@ void AssetManager::PlayAudio(std::string name){
 }
 
 
+//Others
 
+bool AssetManager::CheckContent(string type, string name){
+    if(type == "texture"){
+        auto found = _textures.find(name);
+
+        if(found != _textures.end())
+            return true;
+        else
+            return false;
+    }
+}
 
 
 

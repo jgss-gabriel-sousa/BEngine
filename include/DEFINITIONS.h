@@ -1,9 +1,8 @@
 #pragma once
 
 //############################
-#define GAME_FRAMERATE 60
-#define SCREEN_WIDTH 800    //Pixels
-#define SCREEN_HEIGHT 600   //Pixels
+#define START_SCREEN_WIDTH 800    //Pixels
+#define START_SCREEN_HEIGHT 600   //Pixels
 #define SHOW_CONSOLE 1
 
 //############################
@@ -15,5 +14,7 @@
 #define FONT_ARIAL_FILEPATH "resources/fonts/arial.ttf"
 #define MISSING_AUDIO_FILEPATH "resources/audios/missing.wav"
 #define MISSING_TEXTURE_FILEPATH "resources/textures/missing.png"
+
+#define USER_CONFIG_FILE "config.ini"
 
 //############################
