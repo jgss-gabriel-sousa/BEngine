@@ -7,6 +7,8 @@
 #include "DEFINITIONS.h"
 #include "log.h"
 
+using namespace std;
+
 class AssetManager{
 public:
     AssetManager();
@@ -29,9 +31,12 @@ public:
     sf::SoundBuffer &GetAudio(std::string name);
     void PlayAudio(std::string name);
 
+    bool CheckContent(string type, string name);
+
 private:
     std::map<std::string, sf::Texture> _textures;
     std::map<std::string,sf::Texture> _animations;
+    std::map<std::string,int> _animationsFrames;
     std::map<std::string, sf::Font> _fonts;
     std::map<std::string, sf::SoundBuffer> _audios;
 

@@ -2,7 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "State.h"
-#include "Game.h"
+#include "Engine.h"
+#include "Entity.h"
 
 class SplashState : public State{
 public:
@@ -16,4 +17,6 @@ public:
 
 private:
     GameDataRef _data;
+    Entity entity = Entity("box",sf::Vector2f(START_SCREEN_WIDTH/4,START_SCREEN_HEIGHT/4));
+    Entity entity2 = Entity("box2",sf::Vector2f(START_SCREEN_WIDTH/2,START_SCREEN_HEIGHT/2));
 };
