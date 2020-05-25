@@ -2,31 +2,11 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="BEngine 1.0" />
+		<Option title="BEngine" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="States\;" />
+		<Option virtualFolders="States/" />
 		<Build>
-			<Target title="Debug">
-				<Option output="bin/Debug/sfml test" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-std=c++14" />
-					<Add option="-g" />
-					<Add directory="D:/SFML-2.5.1/include" />
-					<Add directory="include" />
-				</Compiler>
-				<Linker>
-					<Add library="sfml-graphics-d" />
-					<Add library="sfml-audio-d" />
-					<Add library="sfml-network-d" />
-					<Add library="sfml-window-d" />
-					<Add library="sfml-system-d" />
-					<Add directory="D:/SFML-2.5.1/lib" />
-				</Linker>
-			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/sfml test" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
@@ -49,9 +29,22 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="icon.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Unit filename="include/AssetManager.h" />
+		<Unit filename="include/Collision.h" />
+		<Unit filename="include/Components.h" />
 		<Unit filename="include/DEFINITIONS.h" />
-		<Unit filename="include/Game.h" />
+		<Unit filename="include/Engine.h" />
+		<Unit filename="include/Entity.h" />
+		<Unit filename="include/EntityManager.h" />
+		<Unit filename="include/GUI/Bar.h" />
+		<Unit filename="include/GUI/Button.h" />
+		<Unit filename="include/GUI/GUIManager.h" />
+		<Unit filename="include/GUI/Hotbar.h" />
+		<Unit filename="include/GUI/Text.h" />
+		<Unit filename="include/GUI/UI.h" />
 		<Unit filename="include/InputManager.h" />
 		<Unit filename="include/Log.h" />
 		<Unit filename="include/SplashState.h">
@@ -60,17 +53,29 @@
 		<Unit filename="include/State.h" />
 		<Unit filename="include/StateMachine.h" />
 		<Unit filename="sfml-audio-2.dll" />
-		<Unit filename="sfml-audio-d-2.dll" />
 		<Unit filename="sfml-graphics-2.dll" />
-		<Unit filename="sfml-graphics-d-2.dll" />
 		<Unit filename="sfml-network-2.dll" />
-		<Unit filename="sfml-network-d-2.dll" />
 		<Unit filename="sfml-system-2.dll" />
-		<Unit filename="sfml-system-d-2.dll" />
 		<Unit filename="sfml-window-2.dll" />
-		<Unit filename="sfml-window-d-2.dll" />
 		<Unit filename="src/AssetManager.cpp" />
-		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/Collision.cpp" />
+		<Unit filename="src/Engine.cpp" />
+		<Unit filename="src/Entity Components/Bullet.cpp" />
+		<Unit filename="src/Entity Components/Debug.cpp" />
+		<Unit filename="src/Entity Components/Draggable.cpp" />
+		<Unit filename="src/Entity Components/Gravity.cpp" />
+		<Unit filename="src/Entity Components/Movement.cpp" />
+		<Unit filename="src/Entity Components/Rotate.cpp" />
+		<Unit filename="src/Entity Components/SnapToGrid.cpp" />
+		<Unit filename="src/Entity Components/Solid.cpp" />
+		<Unit filename="src/Entity Components/Wrap.cpp" />
+		<Unit filename="src/Entity.cpp" />
+		<Unit filename="src/EntityManager.cpp" />
+		<Unit filename="src/GUI/Bar.cpp" />
+		<Unit filename="src/GUI/Button.cpp" />
+		<Unit filename="src/GUI/GUIManager.cpp" />
+		<Unit filename="src/GUI/Hotbar.cpp" />
+		<Unit filename="src/GUI/Text.cpp" />
 		<Unit filename="src/InputManager.cpp" />
 		<Unit filename="src/Log.cpp" />
 		<Unit filename="src/SplashState.cpp">
@@ -79,9 +84,6 @@
 		<Unit filename="src/StateMachine.cpp" />
 		<Unit filename="src/main.cpp" />
 		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
 			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>
