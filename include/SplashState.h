@@ -16,7 +16,7 @@ public:
     void Draw(float dt);
 
 private:
-    GameDataRef _data;
+    GameDataRef data;
     Entity entity = Entity("box",sf::Vector2f(START_SCREEN_WIDTH/4,START_SCREEN_HEIGHT/4));
     Entity entity2 = Entity("box2",sf::Vector2f(START_SCREEN_WIDTH/2,START_SCREEN_HEIGHT/2));
 };

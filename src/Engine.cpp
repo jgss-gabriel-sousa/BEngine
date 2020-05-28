@@ -4,14 +4,16 @@
 Engine::Engine(){
     UserConfigs();
 
-    _data->window.setVerticalSyncEnabled(true);
-    _data->machine.AddState(StateRef(new SplashState(this->_data)));
+    actualResolution = sf::Vector2f(data->window.getDefaultView().getSize().x,data->window.getDefaultView().getSize().y);
+
+    data->window.setVerticalSyncEnabled(true);
+    data->machine.AddState(StateRef(new SplashState(this->data)));
 
     sf::Image icon;
     icon.loadFromFile("resources/textures/icon.png");
-    _data->window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+    data->window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
-    _data->gui.Init(&_data->assets,&_data->window);
+    data->gui.Init(&data->assets,&data->window);
 
     this->Run();
 }
@@ -41,7 +43,8 @@ void Engine::UserConfigs(){
                 }
             }
             catch(exception& e){
-                LogPush("Error in \"Config.ini\" file");
+                string aux = USER_CONFIG_FILE;
+                LogPush("Error in \""+aux+"\" file");
             }
         }
     }
@@ -54,39 +57,39 @@ void Engine::UserConfigs(){
     }
 
     if(fullscreen)
-        _data->window.create(sf::VideoMode(width,height),"",sf::Style::Fullscreen);
+        data->window.create(sf::VideoMode(width,height),"",sf::Style::Fullscreen);
     else
-        _data->window.create(sf::VideoMode(width,height),"",sf::Style::Resize | sf::Style::Close | sf::Style::Titlebar);
+        data->window.create(sf::VideoMode(width,height),"",sf::Style::Resize | sf::Style::Close | sf::Style::Titlebar);
 }
 
 void Engine::CheckFocus(){
-    if(!_data->window.hasFocus()){
-        _data->window.setFramerateLimit(10);
+    if(!data->window.hasFocus()){
+        data->window.setFramerateLimit(10);
     }
     else{
-        _data->window.setFramerateLimit(framerate);
+        data->window.setFramerateLimit(framerate);
     }
 }
 
 void Engine::UpdateAndDrawEntities(){
-    _data->entities.Update(_data->window,worldView);
+    data->entities.Update(data->window,worldView);
 }
 
 void Engine::UpdateUI(){
-    _data->gui.Update();
+    data->gui.Update();
 }
 
 void Engine::DrawUI(){
-    _data->gui.Draw();
+    data->gui.Draw();
 }
 
 void Engine::GlobalWindowEvents(){
     sf::Event event;
-    GUIview = _data->window.getDefaultView();
+    GUIview = data->window.getDefaultView();
 
-    while(_data->window.pollEvent(event)){
+    while(data->window.pollEvent(event)){
         if(sf::Event::Closed == event.type){
-            this->_data->window.close();
+            this->data->window.close();
         }
         if(event.type == sf::Event::Resized){
             GUIview.setSize({
@@ -96,9 +99,19 @@ void Engine::GlobalWindowEvents(){
 
             actualResolution = sf::Vector2f(GUIview.getSize().x,GUIview.getSize().y);
 
-            _data->window.setView(GUIview);
+            data->window.setView(GUIview);
         }
     }
+}
+
+void Engine::UpdateEngineInfo(float frameTime){
+    data->engine.screenWidth = actualResolution.x;
+    data->engine.screenHeight = actualResolution.y;
+
+    if(frameTime != 0)
+        data->engine.fps = 1/frameTime;
+    else
+        data->engine.fps = 0;
 }
 
 void Engine::Run(){
@@ -107,11 +120,12 @@ void Engine::Run(){
     float currentTime = gameClock.getElapsedTime().asSeconds();
     float accumulator = 0.0f;
 
-    while(_data->window.isOpen()){
+    while(data->window.isOpen()){
         CheckFocus();
         GlobalWindowEvents();
+        UpdateEngineInfo(frameTime);
 
-        _data->machine.ProcessStateChanges();
+        data->machine.ProcessStateChanges();
 
         newTime = gameClock.getElapsedTime().asSeconds();
         frameTime = newTime - currentTime;
@@ -124,21 +138,21 @@ void Engine::Run(){
         accumulator += frameTime;
 
         while(accumulator >= dt){
-            _data->machine.GetActiveState()->HandleInput();
-            _data->machine.GetActiveState()->Update(dt);
+            data->machine.GetActiveState()->HandleInput();
+            data->machine.GetActiveState()->Update(dt);
 
-            _data->gui.Update();
+            data->gui.Update();
 
             accumulator -= dt;
         }
         interpolation = accumulator / dt;
-        _data->window.clear();
-        _data->machine.GetActiveState()->Draw(interpolation);
+        data->window.clear();
+        data->machine.GetActiveState()->Draw(interpolation);
 
-        _data->window.setView(worldView);
+        data->window.setView(worldView);
         UpdateAndDrawEntities();
-        _data->window.setView(GUIview);
+        data->window.setView(GUIview);
         DrawUI();
-        _data->window.display();
+        data->window.display();
     }
 }

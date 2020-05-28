@@ -15,8 +15,8 @@ void Entity::SetVelocity(float x, float y){
     velocity = sf::Vector2f(x,y);
 }
 
-void Entity::SetColor(int r, int g,int b,int alpha){
-    sprite.setFillColor(sf::Color(r,g,b,alpha));
+void Entity::SetColor(sf::Color color){
+    sprite.setFillColor(color);
 }
 
 float Entity::GetDrag(){
@@ -63,6 +63,20 @@ void Entity::SetSize(float x, float y){
 
 void Entity::AddComponent(string component,string argument){
     components.push_back(make_pair(component,argument));
+}
+
+void Entity::RemoveComponent(string component){
+    for(int i = 0; i<components.size(); i++){
+        if(components[i].first == component)
+            components.erase(components.begin()+i);
+    }
+}
+
+void Entity::EditComponent(string component,string argument){
+    for(int i = 0; i<components.size(); i++){
+        if(components[i].first == component)
+            components[i].second = argument;
+    }
 }
 
 void Entity::SetTexture(string tag,AssetManager& asset){

@@ -17,12 +17,14 @@ class Entity{
         ~Entity(){};
 
         void AddComponent(string component,string argument);
+        void RemoveComponent(string component);
+        void EditComponent(string component,string argument);
         void SetTexture(string tag,AssetManager& asset);
 
         void SetPosition(float x,float y);
         void SetSize(float x,float y);
         void SetVelocity(float x,float y);
-        void SetColor(int r, int g,int b,int alpha);
+        void SetColor(sf::Color);
 
         float GetX(){return sprite.getPosition().x;}
         float GetY(){return sprite.getPosition().y;}
