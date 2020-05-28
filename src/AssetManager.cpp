@@ -19,6 +19,7 @@ void AssetManager::LoadTexture(std::string name, std::string fileName){
         LogPush("Texture not Loaded correctly to Asset Manager with tag: \""+name+"\" from: \""+fileName+"\" (Missing Texture applied)");
     }
 
+    tex.setSmooth(true);
     this->_textures[name] = tex;
 }
 
@@ -33,6 +34,7 @@ void AssetManager::LoadTexture(std::string name){
         tex = _textures.at("missing");
         LogPush("Texture not Loaded correctly to Asset Manager with tag: \""+name+"\" from: \""+filePath+"\" (Missing Texture applied)");
     }
+    tex.setSmooth(true);
     this->_textures[name] = tex;
 }
 
@@ -67,7 +69,7 @@ void AssetManager::LoadAnimation(std::string name, int frames){
             tex.loadFromFile(MISSING_TEXTURE_FILEPATH);
         }
         frameName = name+"-"+std::to_string(i);
-        LogPush(frameName);
+        tex.setSmooth(true);
         _animations[frameName] = tex;
     }
 }

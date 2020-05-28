@@ -15,6 +15,6 @@
 #define MISSING_AUDIO_FILEPATH "resources/audios/missing.wav"
 #define MISSING_TEXTURE_FILEPATH "resources/textures/missing.png"
 
-#define USER_CONFIG_FILE "config.ini"
+#define USER_CONFIG_FILE "config.cfg"
 
 //############################

@@ -1,0 +1,3 @@
+Texture Loaded to Asset Manager with tag: "missing" from: "resources/textures/missing.png"
+Font Loaded to Asset Manager with tag: "arial" from: "resources/fonts/arial.ttf"
+Audio Loaded to Asset Manager with tag: "missing" from: "resources/audios/missing.wav"
