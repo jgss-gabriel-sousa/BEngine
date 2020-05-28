@@ -14,6 +14,12 @@
 #include "GUI/GUIManager.h"
 #include "DEFINITIONS.h"
 
+struct EngineInfo{
+    int screenWidth;
+    int screenHeight;
+    int fps;
+};
+
 struct GameData{
     StateMachine machine;
     sf::RenderWindow window;
@@ -21,6 +27,7 @@ struct GameData{
     InputManager input;
     EntityManager entities;
     GUIManager gui;
+    EngineInfo engine;
 };
 
 typedef std::shared_ptr<GameData> GameDataRef;
@@ -37,7 +44,7 @@ private:
     const float dt = 1.0f/60.0f;
     sf::Clock gameClock;
 
-    GameDataRef _data = std::make_shared<GameData>();
+    GameDataRef data = std::make_shared<GameData>();
 
     sf::View GUIview;
     sf::View worldView;
@@ -49,6 +56,7 @@ private:
     void CorrectUIScale(const sf::View);
     void DrawUI();
     void GlobalWindowEvents();
+    void UpdateEngineInfo(float);
 
     void Run();
 };

@@ -7,7 +7,7 @@ void GUIManager::Init(AssetManager* asset, sf::RenderWindow* window){
 
 void GUIManager::Update(){
     for(pair<string,UI::BaseEntity*> element : elements){
-        element.second->Update();
+        element.second->Update(window,window->getDefaultView());
     }
 }
 
