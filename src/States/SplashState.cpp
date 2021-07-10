@@ -1,4 +1,4 @@
-#include "SplashState.h"
+#include "States/SplashState.h"
 
 SplashState::SplashState(GameDataRef data) : data(data){
     ;
@@ -10,7 +10,6 @@ void SplashState::Init(){
 
     entity.SetSize(40,50);
     entity2.SetSize(500,50);
-    data-
 
     entity.AddComponent("draggable","");
     entity.AddComponent("solid","");

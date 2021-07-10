@@ -1,5 +1,5 @@
 #include "Engine.h"
-#include "SplashState.h"
+#include "States/SplashState.h"
 
 Engine::Engine(){
     UserConfigs();
