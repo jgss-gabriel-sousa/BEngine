@@ -1,44 +1,39 @@
 #include "StateMachine.h"
 
 void StateMachine::AddState(StateRef newState, bool isReplacing){
-    this->_isAdding = true;
-    this->_isReplacing = isReplacing;
+    this->isAdding = true;
+    this->isReplacing = isReplacing;
 
-    this->_newState = std::move(newState);
+    this->newState = std::move(newState);
 }
 
 void StateMachine::RemoveState(){
-    this->_isRemoving = true;
+    isRemoving = true;
 }
 
 void StateMachine::ProcessStateChanges(){
-    if(this->_isRemoving && !this->_states.empty()){
-        this->_states.pop();
-        if(!this->_states.empty()){
-            this->_states.top()->Resume();
+    if(isRemoving && !states.empty()){
+        states.pop();
+        if(states.empty()){
+            states.top()->Resume();
         }
-        this->_isRemoving = false;
+        isRemoving = false;
     }
-    if(this->_isAdding){
-        if(!this->_states.empty()){
-            if(this->_isReplacing){
-                this->_states.pop();
+    if(isAdding){
+        if(!states.empty()){
+            if(isReplacing){
+                states.pop();
             }else{
-                this->_states.top()->Pause();
+                states.top()->Pause();
             }
         }
-        this->_states.push((std::move(this->_newState)));
-        this->_states.top()->Init();
-        this->_isAdding = false;
+        states.push((std::move(newState)));
+        states.top()->Init();
+        isAdding = false;
     }
 }
 
 StateRef &StateMachine::GetActiveState(){
-    return this->_states.top();
+    return states.top();
 }
-
-
-
-
-
 
