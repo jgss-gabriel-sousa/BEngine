@@ -20,7 +20,7 @@ void AssetManager::LoadTexture(std::string name, std::string fileName){
     }
 
     tex.setSmooth(true);
-    this->_textures[name] = tex;
+    this->_textures[name] = std::move(tex);
 }
 
 void AssetManager::LoadTexture(std::string name){
@@ -35,7 +35,7 @@ void AssetManager::LoadTexture(std::string name){
         LogPush("Texture not Loaded correctly to Asset Manager with tag: \""+name+"\" from: \""+filePath+"\" (Missing Texture applied)");
     }
     tex.setSmooth(true);
-    this->_textures[name] = tex;
+    this->_textures[name] = std::move(tex);
 }
 
 sf::Texture& AssetManager::GetTexture(std::string name){
@@ -44,7 +44,7 @@ sf::Texture& AssetManager::GetTexture(std::string name){
     if(found != _textures.end()){
         return this->_textures.at(name);
     }else{
-        return this->_textures.at("Missing");
+        return this->_textures.at("missing");
     }
 }
 
@@ -70,7 +70,7 @@ void AssetManager::LoadAnimation(std::string name, int frames){
         }
         frameName = name+"-"+std::to_string(i);
         tex.setSmooth(true);
-        _animations[frameName] = tex;
+        _animations[frameName] = std::move(tex);
     }
 }
 
@@ -96,11 +96,11 @@ void AssetManager::LoadFont(std::string name, std::string fileName){
 
     if(font.loadFromFile(fileName)){
         LogPush("Font Loaded to Asset Manager with tag: \""+name+"\" from: \""+fileName+"\"");
-        this->_fonts[name] = font;
+        this->_fonts[name] = std::move(font);
     }else{
         LogPush("Font not Loaded correctly to Asset Manager with tag: \""+name+"\" from: \""+fileName+"\" (Default Font (Arial) applied)");
         font.loadFromFile(FONT_ARIAL_FILEPATH);
-        this->_fonts[name] = font;
+        this->_fonts[name] = std::move(font);
     }
 }
 
@@ -111,10 +111,10 @@ void AssetManager::LoadFont(std::string name){
 
     if(font.loadFromFile(filePath)){
         LogPush("Font Loaded to Asset Manager with tag: \""+name+"\" from: \""+filePath+"\"");
-        this->_fonts[name] = font;
+        this->_fonts[name] = std::move(font);
     }else{
         font.loadFromFile(FONT_ARIAL_FILEPATH);
-        this->_fonts[name] = font;
+        this->_fonts[name] = std::move(font);
         LogPush("Font not Loaded correctly to Asset Manager with tag: \""+name+"\" from: \""+filePath+"\" (Default Font (Arial) applied)");
     }
 }
@@ -135,12 +135,12 @@ void AssetManager::LoadAudio(std::string name, std::string fileName){
     sf::SoundBuffer sound;
 
     if(sound.loadFromFile(fileName)){
-        this->_audios[name] = sound;
+        this->_audios[name] = std::move(sound);
         LogPush("Audio Loaded to Asset Manager with tag: \""+name+"\" from: \""+fileName+"\"");
     }else{
         LogPush("Audio not Loaded correctly to Asset Manager with tag: \""+name+"\" from: \""+fileName+"\" (Missing Audio applied)");
         sound.loadFromFile(MISSING_AUDIO_FILEPATH);
-        this->_audios[name] = sound;
+        this->_audios[name] = std::move(sound);
     }
 }
 
@@ -155,7 +155,7 @@ void AssetManager::LoadAudio(std::string name){
         sound.loadFromFile(MISSING_AUDIO_FILEPATH);
         LogPush("Audio not Loaded correctly to Asset Manager with tag: \""+name+"\" from: \""+filePath+"\" (Missing Audio applied)");
     }
-    this->_audios[name] = sound;
+    this->_audios[name] = std::move(sound);
 }
 
 sf::SoundBuffer& AssetManager::GetAudio(std::string name){
