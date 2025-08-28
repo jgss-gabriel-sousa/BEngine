@@ -1,6 +1,6 @@
 # BEngine
 
-v0.3 of a C++ Game Engine using SFML
+v0.4 of a C++ Game Engine using SFML
 
 SFML (Simple and Fast Multimedia Library): https://www.sfml-dev.org/
 
