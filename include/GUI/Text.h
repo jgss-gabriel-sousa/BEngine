@@ -6,11 +6,12 @@
 namespace UI{
     class Text : public BaseEntity{
         public:
-            Text(sf::Vector2f position, std::string text, std::string font, bool visible);
+            Text(sf::Vector2f position, std::string text, sf::Font& font, bool visible);
             ~Text(){};
 
-            void Update();
-            void Draw();
+            void Update(sf::RenderWindow*,sf::View);
+            void Draw(sf::RenderWindow*);
+            void Set(std::string);
             int Return();
 
             void Click();

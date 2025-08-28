@@ -53,13 +53,13 @@ void GUIManager::AddButton(string name,sf::Vector2f position,sf::Vector2f Size,s
 }
 
 void GUIManager::AddText(std::string name,sf::Vector2f position, std::string text, std::string font, bool visible){
-    ;//objects.push_back(std::make_pair(name,new UI::Text(_data,position,text,font,visible)));
+    elements[name] = new UI::Text(position,text,asset->GetFont(BUTTON_FONT),visible);
 }
 
 void GUIManager::AddBar(std::string name,sf::Color color,float* posX,float* posY,int* value,int* maxValue,int width,int thickness,bool visible){
-    ;//objects.push_back(std::make_pair(name,new UI::HealthBar(_data,posX,posY,value,maxValue,color,width,thickness,visible)));
+    //elements[name] = new UI::Bar(float* posX,float* posY,int* value,int* maxValue,sf::Color color,int width,int thickness,bool visible);
 }
 
 void GUIManager::AddHotbar(std::string name,sf::Vector2f position,int elements,bool visible){
-    ;//objects.push_back(std::make_pair(name,new UI::Hotbar(_data,position,elements,visible)));
+    //elements[name] = new UI::Hotbar(position,elements,visible);
 }

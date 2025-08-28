@@ -1,6 +1,6 @@
 #include "Components.h"
 
-void Rotate(Entity* entity,string argument){
+void Rotate(Entity* entity,string argument){ //argument example = "arrow||abruptly|"
     string keys;
     string typeOfMovement;
     float rotateSpeed;
