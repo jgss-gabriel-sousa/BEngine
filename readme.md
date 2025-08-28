@@ -1,29 +1,32 @@
 # BEngine
 
-v0.4 of a C++ Game Engine using SFML
+v0.4 – C++ Game Engine built on [SFML](https://www.sfml-dev.org/)
 
-SFML (Simple and Fast Multimedia Library): https://www.sfml-dev.org/
+BEngine is a game engine developed in C++, designed for learning purposes and for creating small games and applications.
 
-The engine was created for my own games and apps, but can be used for a wide variety of other projects.
+## 🔧 Core Modules
+### 🖼 Asset Manager
+Handles all game resources:
+- **Textures**
+- **Animations** (frame-based loading)
+- **Fonts**
+- **Audio**
 
-## Internal Assembly
+   
+### 🖱 Input Manager
+- Handles mouse and keyboard input
 
-- ### Engine
-  - #### Asset Manager
-	- Animations
-	- Audios
-	- Fonts
-    - Textures
-  - #### Input Manager
-    - Mouse Checks
-  - #### Entity Manager
-	- Add Entities: Possibility of performing the most diverse behaviors, fully customizable
-	- Update Entities: Execution of Component Behaviors
-  - #### State Machine
-	- State Stack: A stack that stores the states, executing the top state
-    - State
-	  - Methods
-	    - Init: Initial state settings. Runs only at start of state
-	    - Handle Input: Manage user input or UI. Runs every frame of state
-	    - Update: General code to runs at every frame of state
-	    - Draw: Drawing of sprites. Runs every frame of state
+ 
+### 🧩 Entity Manager
+- Add Entities: create fully customizable entities with specific behaviors
+- Update Entities: run entity/component logic every frame
+
+ 
+### 🔄 State Machine
+Manages game flow using a state stack:
+- **State Stack**: executes the state at the top of the stack
+- **State Lifecycle**:
+	- ```Init```: runs once when the state is created
+  	- ```HandleInput```: processes user input every frame
+	- ```Update```: runs main game logic every frame
+	- ```Draw```: renders sprites every frame
